@@ -13,7 +13,7 @@ import sys
 import networkx
 from networkx.drawing.nx_pydot import write_dot
 from networkx.drawing.nx_agraph import write_dot
-import urllib2
+import urllib.request as urllib
 
 usage = "usage: %s" % sys.argv[0]
 parser = OptionParser(usage)
@@ -43,8 +43,8 @@ except ImportError:
 def fetch(url=None, auth=None):
     if url is None or auth is None:
         return False
-    req = urllib2.Request(url+"/events/xml/"+auth)
-    r = urllib2.urlopen(req)
+    req = urllib.Request(url+"/events/xml/"+auth)
+    r = urllib.urlopen(req)
     v = r.read()
     return v
 
